@@ -38,6 +38,8 @@
 
 
 ## 3일차 진행 내용
+- 분류 모델은 Tree based model, RandomForestClassifier, XGBoost 를 사용해보고 가장 점수가 높은 모델을 채택
+- 하이퍼 파라미터 튜닝은 Grid Search, Bayesian Search 중에서 선택
 
 
 ## 4일차 진행 내용
