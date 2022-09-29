@@ -1,6 +1,6 @@
 # Section2-project
 
-> 어몽어스 초심자에게 알려줄만한 내용에 무엇이 있을까
+> 어몽어스 초심자에게 알려줄만한 내용에 무엇이 있을까<br>
   https://www.kaggle.com/datasets/ruchi798/among-us-dataset
 
 ## 과제 진행시 주의사항(과제로서 가이드라인)
@@ -51,7 +51,7 @@
     - SimpleImputer로 결측치를 채워줄 경우
       - 최고 점수(훈련 : 75 / 검증 : 62)
 - 'max_depth' 파라미터만 조절하긴 했지만 Classifier 종류의 모델이 XGBoost 모델보다 과적합이 적게 발생
-- 결측치가 존재하는 특성은 '주어진 업무 완료까지 걸린 시간'에 해당하는 특성 뿐인데, 해당 특성에서 결측치는 의미가 있다고 판단
+- 결측치가 존재하는 특성은 '주어진 업무 완료까지 걸린 시간'에 해당하는 특성 뿐인데, 해당 특성에서 결측치는 의미가 있다고 판단<br>
   **→ Imputer로 결측치를 채우지 않기로 결정 → XGBoost를 사용하되, SimpleImputer 미사용**
 - 하이퍼 파라미터 튜닝은 Grid Search, Bayesian Search 중에서 선택
 
