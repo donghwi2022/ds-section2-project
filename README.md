@@ -59,6 +59,15 @@
     - n_estimators : 확인결과 영향이 적어서 고정
     - scale_pos_weight : 내가 가진 데이터셋의 타겟 불균형이 심하지 않아 미지정
     - **gamma : 최적값은 0이나, 모델의 과적합이 심해 2로 고정**
+- 평가지표 : 타겟값이 비교적 불균형이 아니기 때문에 accuracy를 사용
+- 모델 해석
+  - 특성 중요도
+    - 시간과 관련된 특성은 high cardinality특성 → Feature Importance 사용 불가
+    - 서로 연관이 있는 특성이 존재(ex. '모든 업무를 완료했는지 여부'특성과 '모든 업무 완료까지 걸린 시간'특성) → Permutation Importance 사용 불가
+    - 특성 개수가 비교적 많지 않으므로, Drop-Column Importance 사용
+  - ICE Plot → 우리가 보고자 하는 것은 전체적인 데이터를 통한 분석이기 때문에 생략
+  - PDP
+    - 특성 중요도에서 해당 특성을 drop했을 때, 성능이 감소하는 특성에 대해 진행
 
 
 ## 4일차 진행 내용
@@ -67,7 +76,21 @@
 ---
 
 ## 회고
-
+- 질문
+  - XGBClassifier(eval_metric='error', gamma=2, n_estimators=200, n_jobs=-1,
+              random_state=42, xgbclassifier__max_depth=2,
+              xgbclassifier__min_child_weight=1, xgbclassifier__sub_sample=0.2)
+  - model_sample = XGBClassifier(
+        eval_metric = "error",  
+        n_estimators = 200,
+        random_state = 42,
+        gamma = 2,
+        n_jobs = -1,
+        max_depth=2, 
+        min_child_weight=1, 
+        sub_sample=0.2
+    )
+    : 위의 2개의 모델에 대해서 xgbclassifier__가 붙는지 여부로 정확도 점수가 다르게 나옴
 
 ## 피드백
 
