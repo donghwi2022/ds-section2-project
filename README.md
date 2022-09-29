@@ -38,7 +38,21 @@
 
 
 ## 3일차 진행 내용
-- 분류 모델은 Tree based model, RandomForestClassifier, XGBoost 를 사용해보고 가장 점수가 높은 모델을 채택
+- 분류 모델은 Tree based model, RandomForestClassifier, XGBoost 를 사용해보고 가장 점수가 높은 모델을 채택(max_depth 파라미터만 조절)
+  - DecisionTreeClassifier
+    - SimpleImputer로 결측치를 채워줄 필요가 있음
+    - 최고 점수(훈련 : 65 / 검증 : 60)
+  - RandomForestClassifier
+    - SimpleImputer로 결측치를 채워줄 필요가 있음
+    - 최고 점수(훈련 : 64 / 검증 : 60)
+  - XGBoost
+    - SimpleImputer로 결측치를 채워주지 않을 경우
+      - 최고 점수(훈련 : 76 / 검증 : 61)
+    - SimpleImputer로 결측치를 채워줄 경우
+      - 최고 점수(훈련 : 75 / 검증 : 62)
+- 'max_depth' 파라미터만 조절하긴 했지만 Classifier 종류의 모델이 XGBoost 모델보다 과적합이 적게 발생
+- 결측치가 존재하는 특성은 '주어진 업무 완료까지 걸린 시간'에 해당하는 특성 뿐인데, 해당 특성에서 결측치는 의미가 있다고 판단
+  **→ Imputer로 결측치를 채우지 않기로 결정 → XGBoost를 사용하되, SimpleImputer 미사용**
 - 하이퍼 파라미터 튜닝은 Grid Search, Bayesian Search 중에서 선택
 
 
