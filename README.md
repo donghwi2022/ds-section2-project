@@ -53,7 +53,12 @@
 - 'max_depth' 파라미터만 조절하긴 했지만 Classifier 종류의 모델이 XGBoost 모델보다 과적합이 적게 발생
 - 결측치가 존재하는 특성은 '주어진 업무 완료까지 걸린 시간'에 해당하는 특성 뿐인데, 해당 특성에서 결측치는 의미가 있다고 판단<br>
   **→ Imputer로 결측치를 채우지 않기로 결정 → XGBoost를 사용하되, SimpleImputer 미사용**
-- 하이퍼 파라미터 튜닝은 Grid Search, Bayesian Search 중에서 선택
+- 하이퍼 파라미터 튜닝은 Grid Search로 진행
+  - 튜닝 파라미터 : max_depth, min_child_weight, sub_sample
+  - 튜닝하지 않은 파라미터
+    - n_estimators : 확인결과 영향이 적어서 고정
+    - scale_pos_weight : 내가 가진 데이터셋의 타겟 불균형이 심하지 않아 미지정
+    - **gamma : 최적값은 0이나, 모델의 과적합이 심해 2로 고정**
 
 
 ## 4일차 진행 내용
