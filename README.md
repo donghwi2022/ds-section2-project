@@ -42,14 +42,14 @@
     ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/5899fe18-b8b0-42d1-8561-391877863d75)
 
   ### 2. 시각화
-    - 전체 데이터의 승/패 비율
-    ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/ed2cd776-e1f8-4a0e-880c-f5429904e84d) <br>
-    : 승/패 비율이 비슷하기 때문에 프로젝트를 신뢰할 수 있음
+  - 전체 데이터의 승/패 비율
+  ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/ed2cd776-e1f8-4a0e-880c-f5429904e84d) <br>
+  : 승/패 비율이 비슷하기 때문에 프로젝트를 신뢰할 수 있음
 
-    - 게임 승패에 따른 게임 시간 비교(가설1 검증)
-    ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/ca8906c7-9c73-4436-936d-3e9551ba757a) <br>
-    : 승리한 게임의 시간이 패배한 게임에 비해 길음 <br>
-    ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/5dd24a98-d6d5-45ae-921a-5bcf193fa556)
+  - 게임 승패에 따른 게임 시간 비교(가설1 검증)
+  ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/ca8906c7-9c73-4436-936d-3e9551ba757a) <br>
+  : 승리한 게임의 시간이 패배한 게임에 비해 길음 <br>
+  ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/5dd24a98-d6d5-45ae-921a-5bcf193fa556)
 
     - 사용 디바이스 종류 분석
     - 컬럼의 연도별 변화 분석(함수화하여 다양한 컬럼에 대해 분석할 수 있도록 작성)
