@@ -19,7 +19,7 @@
   |총 개발기간|9/27(화) ~ 9/30(금)(총 4일)|||
   
 ## 3. 데이터셋 설명
-  - 데이터 셋 : 2020년 11월 ~ 2021년 1월까지 게임 진행 데이터(승패 여부, 업무 완료 개수, 게임 시간 등)
+  - 데이터 셋 : 2020년 11월 ~ 2021년 1월까지 게임 진행 데이터(승패 여부, 업무 완료 개수, 게임 시간 등) <br>
     → 총 29개로 나누어진 파일을 1개의 파일로 통합하여 진행 <br>
   - 데이터셋 주소 : https://www.kaggle.com/datasets/ruchi798/among-us-dataset
   - 특성 설명 <br>
@@ -31,19 +31,26 @@
   - 사용하지 않는 데이터 및 특성 제거
     1. 특성 설명에서 하위 4개의 특성을 제거 <br>
     2. 소속 팀이 크루원인 데이터만 남기고 'Team' 특성 제거 <br>
-    ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/7e5586df-6a69-494e-97f4-301155f95ed0) <br>
+    ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/7e5586df-6a69-494e-97f4-301155f95ed0)
 
   - 중복값 제거
-    1. 중복값 제거 후 확인
+    1. 중복값 제거 후 확인 <br>
     ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/0f49c68f-25ce-440f-b9da-887f0b3ced45)
 
   - 시간 관련 특성 단위 통일
-    1. 분과 초가 나눠서 기록된 데이터와 분을 초로 환산하여 기록된 데이터가 혼재되어 있어, 분을 초로 환산하여 통일
+    1. 분과 초가 나눠서 기록된 데이터와 분을 초로 환산하여 기록된 데이터가 혼재되어 있어, 분을 초로 환산하여 통일 <br>
     ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/5899fe18-b8b0-42d1-8561-391877863d75)
 
   ### 2. 시각화
-    - 전체 고객에 대한 분석
-    - 전체 상품에 대한 분석
+    - 전체 데이터의 승/패 비율
+    ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/ed2cd776-e1f8-4a0e-880c-f5429904e84d) <br>
+    : 승/패 비율이 비슷하기 때문에 프로젝트를 신뢰할 수 있음
+
+    - 게임 승패에 따른 게임 시간 비교(가설1 검증)
+    ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/ca8906c7-9c73-4436-936d-3e9551ba757a) <br>
+    : 승리한 게임의 시간이 패배한 게임에 비해 길음 <br>
+    ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/5dd24a98-d6d5-45ae-921a-5bcf193fa556)
+
     - 사용 디바이스 종류 분석
     - 컬럼의 연도별 변화 분석(함수화하여 다양한 컬럼에 대해 분석할 수 있도록 작성)
     - 컬럼의 계절별 분석(함수화하여 다양한 컬럼에 대해 분석할 수 있도록 작성)
