@@ -1,9 +1,13 @@
-# 어몽어스 크루원 초심자 가이드
+# 어몽어스 크루원 플레이 추천
 ## 1. 프로젝트 개요
   ### 1. 어몽어스 소개
   ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/c2452be7-4ee2-46b3-a537-72f660f56cdb)
   ### 2. 문제 정의
-  ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/aba04f65-5cc9-4273-8b5b-f56414b1410c)
+  ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/674ce296-d2a1-418e-b513-5531ba91e568) <br>
+  step 1. 최근 유튜브로 ‘빅헤드’ 유튜버의 영상을 많이 보는데, 그중에서 어몽어스 플레이 영상을 재밌게 시청
+  step 2. 어몽어스는 2020년 다양한 스트리머들이 플레이 하면서 대유행, 그 후 2년이 지났기 때문에 초심자에게 진입 장벽이 높아졌다고 생각
+  step 3. 선정 확률이 적은 임포스터 대신 선정 확률이 높은 크루원을 주제로 선정
+  step 4. 머신러닝을 활용하여 크루원의 2가지 승리 조건 중 어느 조건이 승리하기 쉬운지 확인 후 추천하기로 결정
   ### 3. 가설 설정
   1. 게임 시간이 길수록 크루원에게 유리할 것이다.
   2. 주어진 미션을 모두 끝냈을 경우가 끝내지 못했을 경우보다 승리 수가 더 많을 것이다.
@@ -51,39 +55,71 @@
   : 승리한 게임이 패배한 게임에 비해 비교적으로 게임 시간이 길음 <br>
     따라서, 가설 1. 게임 시간이 길수록 크루원에게 유리할 것이다. → 진실 <br>
 
-  - 주어진 업무 완료 여부 별 승/패 수 <br>
+  - 주어진 업무 완료 여부 별 승/패 수(가설2 검증) <br>
   ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/65d10099-d2cd-4d9a-b548-fde7b024aa9f) <br>
   : 주어진 미션을 완료하지 못했을 때, 승리와 패배의 수가 모두 비교적 많음 <br>
     따라서, 가설 2. 주어진 미션을 모두 끝냈을 경우가 끝내지 못했을 경우보다 승리 수가 더 많을 것이다. → 거짓 <br>
     
   ### 3. 머신러닝
   - 훈련/검증/테스트 데이터 분리 <br>
-  ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/1c6c07f5-2256-4649-972e-e608e4ea8f0e) <br>
   : 데이터를 학습 데이터와 테스트 데이터로 4:1의 비율로 분리 후, 학습 데이터를 다시 학습 데이터와 검증 데이터로 4:1의 비율로 분리 <br>
-  → 검증 데이터로 하이퍼 파라미터 튜닝을 진행하여 성능 향상 <br>
+  → 하이퍼 파라미터 튜닝을 위해 검증 데이터가 필요 <br>
+  ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/1c6c07f5-2256-4649-972e-e608e4ea8f0e) <br>
   
   - baseline 모델 <br>
+  : 최빈값으로 타겟값 예측 <br>
     ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/bb149745-47c8-46e8-aa87-b82cc0a1c214) <br>
-    : 최빈값으로 타겟값 예측 <br>
     
   - 머신러닝(XGBoost 모델)
-      - 상품의 정보를 바탕으로 CB모델을 통해 추천
-      - OOM 문제를 해결하기 위해 코사인 유사도가 아닌 annoy 라이브러리를 사용
-  ### 5. 성능평가
-    - 20개의 상품을 추천
-    - precision@k와 recall@k를 통해 성능평가
-  ### 6. 모듈화
-    1. 앞의 추천 모델을 python 파일로 작성 및 저장
-    2. Colab에서 해당 python 파일을 불러와 추천 및 
-## 5. 프로젝트 결과
-  - 기준 모델의 성능(20개 추천 기준)
-    - precision@k : 0.00013472549680026923
-    - recall@k : 0.00036301053382020325
-  - 추천 모델의 성능(20개 추천 기준)
-    - precision@k : 0.0001613899180419891
-    - recall@k : 0.0004927032935038315
-  - 결과 요약
-    : 2가지 성능평가 모두 기준모델보다 추천 모델이 점수가 높은 것을 확인할 수 있음
+    ① 특성 인코딩 <br>
+    : 학습 진행을 위해 특성 인코딩 <br>
+    ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/17e6dbbf-9771-47fb-ad35-744fd4f994d0) <br>
+    
+    ② 모델 생성 <br>
+    : XGBoost 모델로 머신러닝 모델 생성 <br>
+    ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/16f3d36a-a694-401e-8ee4-5a7e36514e9e) <br>
+    
+    ③ 하이퍼 파라미터 탐색 <br>
+    : max_depth, min_child_weight, sub_sample 3가지 파라미터에 대하여 모델 성능이 가장 높은 값을 탐색 <br>
+    ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/c370a5be-e097-42de-a078-c1a90ab2f2a3) <br>
+
+    ④ 하이퍼 파라미터 튜닝 후 학습 진행 <br>
+    : ③에서 찾은 최적의 파라미터로 튜닝 후 학습 진행 <br>
+    ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/12fffec1-169f-4f58-b690-59138018c524) <br>
+    
+  ### 5. 성능 평가
+  - 학습에서 활용하지 않은 테스트 데이터로 예측을 진행하여 일반화 성능을 확인
+  - Confusion Matrix를 통해 예측 결과를 직관적으로 확인 <br>
+    ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/07a9f004-e736-4212-af1c-b8178da2f06e) <br>
+    - 실제로 승리한 샘플 중에서 모델이 승리했다고 예측한 샘플의 개수 : 141개
+    - 실제로 승리한 샘플 중에서 모델이 패배했다고 예측한 샘플의 개수 : 45개
+    - 실제로 패배한 샘플 중에서 모델이 승리했다고 예측한 샘플의 개수 : 76개
+    - 실제로 패배한 샘플 중에서 모델이 패배했다고 예측한 샘플의 개수 : 70개
+      
+  - Classification Report를 통해 각 class에 대한 성능 평가 결과를 확인
+    - precision : '예측값'을 기준으로 '정답인 예측값'의 비율
+    - recall : '실제 값'을 기준으로 '정답인 예측값'의 비율
+    - f1-score : precision과 recall의 가중 조화평균 
+    - support : 각 라벨의 실제 샘플 개수
+    - accuracy : 전체 샘플 중 맞게 예측한 샘플 수의 비율
+    ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/f2ecd42e-2a03-4a89-9f65-e7521310adfa) <br>
+    ex) precision의 Loss인 0.61은 '패배를 예측한 샘플 중에서 실제 패배인 샘플의 비율'로 115개(70개+45개) 중에서 70개의 샘플이 차지하는 비율
+    
+  ### 6. 모델 해석
+  - Feature Importance(가설3 검증)
+    : 모델이 중요하다고 생각한 특성의 순위 <br>
+    ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/49b51a8a-a988-4a0f-bc9a-f3570482369c) <br>
+    : ‘Murdered’, 'Ejected', 'Sabotages Fixed' 특성 순으로 모델의 성능에 가장 큰 영향을 미침 <br>
+    따라서, 게임 승패에 큰 영향을 끼치는 요인은 ‘임포스터에게 살해당했는지 여부’일 것이다. → 진실 <br>
+    
+## 5. 프로젝트 결론
+  - 가설 검증 결과
+    - 게임 시간이 길수록 크루원에게 유리
+    - 미션을 완료하지 않았을 경우의 승리 횟수가 미션을 완료할 경우보다 많음
+    - 예측 모델에서 중요한 특성 : Murdered(임포스터에게 살해당했는지 여부), Ejected(투표로 퇴출되었는지 여부), Sabotages Fixed(사보타지 고친 횟수)
+      
+  - 결론
+    : 크루원의 2가지 승리 조건인 '주어진 미션을 모두 완료'와 '모든 임포스터를 투표로 퇴출' 중에서 미션을 완료하기보다 임포스터에게 살해당하지 않게 주의하면서 '투표로 모든 임포스터를 퇴출' 시키는 플레이를 추천
 ## 6. 한계점 및 향후 계획
   - 한계점
     - 시계열 정보를 활용하기 위해 함수를 작성해 보았으나 OOM 문제가 발생하여 시계열 정보를 활용하지 못함
