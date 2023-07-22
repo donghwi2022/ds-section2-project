@@ -1,66 +1,46 @@
-# 초심자를 위한 추천 플레이 작성
+# 어몽어스 크루원 초심자 가이드
 ## 1. 프로젝트 개요
-  ### 1. 문제 정의
-  여가 시간에 유튜브를 시청하던 중 추천 영상을 시청했는데, 해당 영상의 시청 만족도가 별로 좋지 않았음 <br> 
-  → 이러한 추천 알고리즘이 어떻게 진행되는지 파악하고 직접 구현해 봄으로써, 다양한 분야에서 사용되는 추천 시스템에 대해 미리 숙지하고 데이터가 주어졌을 때, 이러한 경험을 바탕으로 추천 시스템을 구축해 보고자 해당 프로젝트를 기획
-  ### 2. 가설 설정
-  상품의 정보를 활용하여 연관성을 바탕으로 추천을 진행하면 좋은 성능을 기대할 수 있을 것이라 예상
+  ### 1. 어몽어스 소개
+  ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/c2452be7-4ee2-46b3-a537-72f660f56cdb)
+  ### 2. 문제 정의
+  ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/aba04f65-5cc9-4273-8b5b-f56414b1410c)
+  ### 3. 가설 설정
+  1. 게임 시간이 길수록 크루원에게 유리할 것이다.
+  2. 주어진 미션을 모두 끝냈을 경우가 모두 끝내지 못했을 경우보다 승리 수가 더 많을 것이다.
+  3. 게임 승패에 큰 영향을 끼치는 요인은 ‘임포스터에게 살해당했는지 여부’일 것이다.
+
 ## 2. 프로젝트 진행 과정
   |구분|기간|활동|비고|
   |:---:|:---:|---|---|
-  |사전 기획|1/31(화)|- 프로젝트 기획 및 데이터 확인||
-  |데이터 전처리 및 <br> 시각화|2/1(수) ~ 2/2(목)|- 1차 데이터 전처리 진행 <br> - 다양한 시각화 진행||
-  |데이터 전처리 추가 |2/3(금)|2차 데이터 전처리 진행|시각화 진행하면서 발견된 내용에 대해 추가적인 전처리|
-  |모델링 및 성능 평가|2/6(월) ~ 2/10(금)|- baseline 모델 구현 <br> - 모델 구현(CB모델) <br> - 성능 평가|파일 경량화 작업 진행|
-  |모듈화|2/13(월) ~ 2/14(화)|모델 모듈화|진행 내용을 python파일로 변경|
-  |총 개발기간|1/31(화) ~ 2/14(화)(총 2주)|||
+  |사전 기획|9/27(화)|- 프로젝트 기획 및 데이터 확인||
+  |데이터 전처리 및 <br> 시각화|9/28(수)|데이터 전처리 후, 시각화||
+  |모델링 및 성능 평가|9/28(수) ~ 9/29(목)|- baseline 모델 구현 <br> - 모델 구현(XGBoost모델) <br> - 성능 평가|하이퍼 파라미터 튜닝 진행|
+  |모델 해석 및 정리|9/30(금)|모델 해석 및 정리|프로젝트 내용을 ppt 파일로 정리|
+  |총 개발기간|9/27(화) ~ 9/30(금)(총 4일)|||
+  
 ## 3. 데이터셋 설명
-  - 데이터셋 주소 : https://www.kaggle.com/datasets/latifahhukma/fashion-campus?select=customer.csv
-  - 사용한 데이터 파일
-    : 아래의 3가지 파일을 하나의 csv파일로 만들어 사용(최초 용량 : 약 700MB)
-    - customer.csv
-    - product.csv
-    - transaction_new.csv <br>
-  - 컬럼 설명
-    - created_at : 이벤트 발생시각
-    - customer_id : 고객 id
-    - session_id : 세션 id
-    - payment_method : 결제 방식
-    - payment_status : 결제 성공 여부
-    - promo_amount : 할인 금액
-    - promo_code : 프로모션 코드(할인쿠폰)
-    - shipment_fee : 배송 비용
-    - shipment_date_limit : 배송까지 최대 시각(언제까지는 도착할 것이다 느낌)
-    - shipment_location_lat : 배송지역 위도
-    - shipment_location_long : 배송지역 경도
-    - total_amount : 총 비용
-    - product_id : 상품 id
-    - quantity : 주문 수량
-    - item_price : 상품 가격
-    - product_gender : 상품 타겟 성별
-    - masterCategory : 최상위 분류
-    - subCategory : 서브 분류
-    - articleType : 상품 종류
-    - baseColor : 기본 색상
-    - season : 적합 계절
-    - year : 상품 출시 년도
-    - usage : 사용 방식(어느 복장인지)
-    - productDisplayName : 상품 이름
-    - customer_gender : 고객 성별
-    - birthdate : 고객 생일
-    - device_type : 디바이스 타입
-    - device_id : 디바이스 id
-    - device_version : 디바이스 버전
-    - home_location_lat : 집 위도
-    - home_location_long : 집 경도
-    - home_location : 집 위치
-    - first_join_date : 첫 가입 날짜
+  - 데이터 셋 : 2020년 11월 ~ 2021년 1월까지 게임 진행 데이터(승패 여부, 업무 완료 개수, 게임 시간 등)
+    → 총 29개로 나누어진 파일을 1개의 파일로 통합하여 진행 <br>
+  - 데이터셋 주소 : https://www.kaggle.com/datasets/ruchi798/among-us-dataset
+  - 특성 설명
+    ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/3a6d6fc6-00f3-4801-a6a9-2296d1621d5b) <br>
+    : 빨간 박스에 있는 특성만 사용
+
 ## 4. 프로젝트 진행 내용
   ### 1. 전처리
-    - 중복 컬럼 drop
-    - 특성을 추출하기 어렵다고 판단되는 내용 컬럼 drop(first_name, last_name 등)
-    - 보안을 위해 hash값으로 처리된 데이터에 대해 시각적 편의를 위해 라벨링 진행
-    - 시계엘 컬럼 길이 제한
+    - 사용하지 않는 데이터 및 특성 제거
+      1. 특성 설명에서 하위 4개의 특성을 제거
+      2. 소속 팀이 크루원인 데이터만 남기고 'Team' 특성 제거
+      ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/7e5586df-6a69-494e-97f4-301155f95ed0) 
+
+    - 중복값 제거
+      1. 중복값 제거 후 확인
+    ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/0f49c68f-25ce-440f-b9da-887f0b3ced45)
+
+    - 시간 관련 특성 단위 통일
+      1. 분과 초가 나눠서 기록된 데이터와 분을 초로 환산하여 기록된 데이터가 혼재되어 있어, 분을 초로 환산하여 통일
+      ![image](https://github.com/donghwi2022/ds-section2-project/assets/73475048/5899fe18-b8b0-42d1-8561-391877863d75)
+
   ### 2. 시각화
     - 전체 고객에 대한 분석
     - 전체 상품에 대한 분석
